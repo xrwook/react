@@ -2,13 +2,13 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import Button from '../../common/Button';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../locale/index';
-// import {getItem, setItem } from '../../utils/localStorage'
+import { getItem, setItem } from '../../utils/localStorage';
 
 const Test = () => {
   const { t } = useTranslation();
   const [incNumber, setIncNumber] = useState<number>(0);
   const [locale, setLocale] = useState<string>(
-    localStorage.getItem('locale') || 'ko',
+    getItem<{ locale: string }>('locale')?.locale || 'ko',
   );
   const useRandom = useCallback(() => {
     setIncNumber(incNumber + 1);
@@ -32,7 +32,7 @@ const Test = () => {
 
   useEffect(() => {
     i18n.changeLanguage(locale);
-    localStorage.setItem('locale', locale);
+    setItem('locale', { locale: locale });
   }, [locale]);
 
   return (

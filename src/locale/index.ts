@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next';
 import ko from './ko';
 import en from './en';
 import fr from './fr';
-
+import { getItem } from '../utils/localStorage';
 // export default { ko, en, fr };
 
 const localeData = async (locale: string) => {
@@ -29,9 +29,9 @@ const localeData = async (locale: string) => {
 
 const loadResources = async (locale: string) => {
   const data = await localeData(locale);
-  console.log(JSON.stringify(data));
   return data;
-  // return await axios
+  // #TODO
+  // return axios
 };
 
 const backendOptions = {
@@ -61,7 +61,7 @@ i18n
     backend: backendOptions,
     fallbackLng: 'ko',
     debug: false,
-    lng: localStorage.getItem('locale') || 'ko',
+    lng: getItem<{ locale: string }>('locale')?.locale || 'ko',
     ns: ['translations'],
     defaultNS: 'translations',
     interpolation: {

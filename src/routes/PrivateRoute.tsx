@@ -1,16 +1,22 @@
-import { type ReactElement } from 'react';
-import { Navigate } from 'react-router';
-import useAuthStore from '../store/useAuthStore';
+import { type ReactElement, useEffect } from 'react';
+// import { Navigate } from 'react-router';
+import keycloak from '../keycloak';
 
 interface Props {
   children: ReactElement;
 }
 
 const PrivateRoute: React.FC<Props> = ({ children }) => {
-  // Replace with your auth condition
-  const { isAuthenticated } = useAuthStore((state) => state);
-
-  return isAuthenticated ? children : <Navigate to="/" />;
+  useEffect(() => {
+    // keycloak.login();
+    const xxx = async () => {
+      const cc = await keycloak.loadUserProfile();
+      console.log(cc);
+    };
+    xxx();
+  }, []);
+  // return isLoggedIn() ? children : <Navigate to="/" />;
+  return children;
 };
 
 export default PrivateRoute;

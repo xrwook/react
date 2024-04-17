@@ -7,4 +7,4 @@ export const useLoginQuery = () =>
   useMutation(['login'], async (body: LoginBody) => {
     const res = await login(body);
     return res;
-});
+  });

@@ -13,9 +13,11 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import Button from '../../common/Button';
 
 interface AirportData extends Airport {
   number?: number;
+  [key: string]: any;
 }
 
 ChartJS.register(
@@ -36,16 +38,34 @@ const BarChart = ({
   chartType: string;
   data: AirportData[];
 }) => {
+  if (data.length === 0) return;
+
   const label: string[] = data.map((x) => x.name);
-  const dataSet = [
-    {
-      label: 'AirPort',
-      data: data.map((x) => x.number),
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1,
-    },
-  ];
+
+  const datas: { [key: string]: number }[] = data.map((x) => {
+    return Object.keys(x).reduce((acc, key) => {
+      if (key.includes('number')) {
+        return { ...acc, [key]: x[key] };
+      }
+      return acc;
+    }, {});
+  });
+
+  const chartKey: string[] = Object.keys(datas[0]).filter((x) =>
+    x.includes('number'),
+  );
+
+  const reduceData = chartKey.map((key) => {
+    return datas.map((x) => x[key]);
+  });
+
+  const dataSet = reduceData.map((data, index) => ({
+    label: `AirPort${index + 1}`,
+    data,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgba(255, 99, 132, 1)',
+    borderWidth: 1,
+  }));
 
   const chartData = {
     labels: label,
@@ -67,11 +87,13 @@ const BarChart = ({
 
   return (
     <>
-      {chartType === 'Bar' ? (
-        <Bar options={options} data={chartData} />
-      ) : (
-        <Line options={options} data={chartData} width="894px" height="320px" />
-      )}
+      <div style={{ width: '1000px', height: '320px' }}>
+        {chartType === 'Bar' ? (
+          <Bar options={options} data={chartData} />
+        ) : (
+          <Line options={options} data={chartData} />
+        )}
+      </div>
     </>
   );
 };
@@ -79,6 +101,8 @@ const BarChart = ({
 const Chart = () => {
   const [data, setData] = useState<AirportData[]>([]);
   const [type, setType] = useState('Bar');
+  const [idx, setIdx] = useState(0);
+
   useEffect(() => {
     const airport: Airport[] = Array.from({ length: 10 }, () =>
       faker.airline.airport(),
@@ -95,14 +119,27 @@ const Chart = () => {
     setType(e.target.value);
   };
 
+  const addData = () => {
+    const add = idx + 1;
+    const addData = data.map((x) => {
+      return {
+        ...x,
+        [`number${add}`]: faker.number.int({ max: 10000 }),
+      };
+    });
+    setData(addData);
+    setIdx(add);
+  };
+
   return (
     <>
       <h1>AirPort</h1>
+      <Button text="ADD" isLoading={false} onClick={addData}></Button>
       <table>
         <thead>
           <tr>
             <th>Name</th>
-            <th>IataCode</th>
+            <th>IataCode{idx}</th>
           </tr>
         </thead>
         <tbody>
@@ -111,7 +148,11 @@ const Chart = () => {
               <tr key={idx}>
                 <td>{x.name}</td>
                 <td>{x.iataCode}</td>
-                <td>{x.number}</td>
+                {Object.keys(x).map((key) => {
+                  return (
+                    <td key={key}>{key.includes('number') ? x[key] : ''}</td>
+                  );
+                })}
               </tr>
             );
           })}

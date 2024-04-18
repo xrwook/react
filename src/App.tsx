@@ -1,9 +1,9 @@
 import Router from './routes';
 import Header from './common/Header';
 
-import keycloak, { initOptions } from './keycloak';
+import { init } from './keycloak';
 
-keycloak.init(initOptions);
+init();
 
 export default function App() {
   return (

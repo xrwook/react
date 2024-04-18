@@ -1,5 +1,5 @@
 import Keycloak from 'keycloak-js';
-import type { KeycloakOnLoad } from 'keycloak-js';
+import type { KeycloakOnLoad, KeycloakInitOptions } from 'keycloak-js';
 
 // const { VITE_KEYCLOAK_URL, VITE_KEYCLOAK_REALM, VITE_KEYCLOAK_CLIENT_ID } =
 //   import.meta.env;
@@ -26,17 +26,29 @@ const keycloak = new Keycloak(keycloakInfo);
  * keycloak 초기화 옵션
  */
 //'login-required'|'check-sso';
-const load: KeycloakOnLoad = 'check-sso';
-export const initOptions = {
+const load: KeycloakOnLoad = 'login-required';
+export const initOptions: KeycloakInitOptions = {
   onLoad: load,
+  redirectUri: `${window.location.origin}/test`,
   // checkLoginIframe: false,
 };
 
-export const doLogin = keycloak.login;
-export const doLogout = keycloak.logout;
-export const getToken = () => keycloak.token;
-export const getTokenParsed = () => keycloak.tokenParsed;
-export const isLoggedIn = () => !!keycloak.token;
+// export const doLogin = keycloak.login;
+// export const doLogout = keycloak.logout;
+// export const getToken = () => keycloak.token;
+// export const getTokenParsed = () => keycloak.tokenParsed;
+// export const isLoggedIn = () => !!keycloak.token;
+
+export const init = () => {
+  keycloak
+    .init(initOptions)
+    .then((authenticated) => {
+      console.log('authenticated', authenticated);
+    })
+    .catch((error) => {
+      console.log('keycloak error', error);
+    });
+};
 
 /**
  * keycloak 이벤트 처리

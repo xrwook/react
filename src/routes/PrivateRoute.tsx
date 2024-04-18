@@ -8,6 +8,8 @@ interface Props {
 
 const PrivateRoute: React.FC<Props> = ({ children }) => {
   useEffect(() => {
+    const isLoggedIn = keycloak.authenticated;
+    console.log(isLoggedIn);
     // keycloak.login();
     const xxx = async () => {
       const cc = await keycloak.loadUserProfile();

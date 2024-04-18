@@ -3,10 +3,13 @@ import Button from '../../common/Button';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../locale/index';
 import { getItem, setItem } from '../../utils/localStorage';
+import { useKeycloak } from '@react-keycloak/web';
 
 const Test = () => {
+  const { keycloak } = useKeycloak();
   const { t } = useTranslation();
   const [incNumber, setIncNumber] = useState<number>(0);
+  const [userInfo, setUserInfo] = useState<any>({});
   const [locale, setLocale] = useState<string>(
     getItem<{ locale: string }>('locale')?.locale || 'ko',
   );
@@ -22,10 +25,6 @@ const Test = () => {
     return incNumber + 1;
   }, [incNumber]);
 
-  // const incrementData = () => {
-  //   setData(data + 1);
-  // };
-
   const selectLocale = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLocale(e.target.value);
   };
@@ -35,9 +34,26 @@ const Test = () => {
     setItem('locale', { locale: locale });
   }, [locale]);
 
+  const getUseinfo = async () => {
+    const user = await keycloak.loadUserInfo();
+    setUserInfo(user);
+    console.log(user);
+  };
+
   return (
     <>
       <div>
+        <Button text="getUseinfo" onClick={getUseinfo} />
+        <div>
+          {Object.keys(userInfo).map((key, idx) => {
+            return (
+              <div key={idx}>
+                {key}: {userInfo[key]}
+              </div>
+            );
+          })}
+        </div>
+
         <Button text={t(`common.home`)} onClick={useRandom} />
         {/* <Button text={t(`common.home`)} onClick={incrementData} /> */}
       </div>

@@ -8,8 +8,10 @@ import { loginSchema } from '../../utils/validation';
 import { useLoginQuery } from '../../services/queries/auth.query';
 import useAuthStore from '../../store/useAuthStore';
 import { type LoginBody } from '../../types/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const { setIsAuthenticated } = useAuthStore((state) => state);
   const { isLoading, mutateAsync: login, isError, error } = useLoginQuery();
   const {
@@ -29,31 +31,38 @@ const Login = () => {
     setIsAuthenticated(true);
   };
 
+  const goTest = () => {
+    navigate('/test');
+  }
+
   return (
-    <form
-      className="m-auto w-[90%] md:w-[30%]"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <p className="text-center text-sm mb-2">Username: user</p>
-      <p className="text-center text-sm mb-3">Password: user</p>
-      <Input
-        errors={errors}
-        placeholder="Username"
-        label="Username"
-        id="username"
-        register={register}
-        name="username"
-      />
-      <Input
-        errors={errors}
-        placeholder="Password"
-        label="Password"
-        type="password"
-        register={register}
-        name="password"
-      />
-      <Button text="Login" type="submit" isLoading={isLoading} />
-    </form>
+    <>
+      <Button text="test" onClick={goTest}  isLoading={isLoading} />
+      <form
+        className="m-auto w-[90%] md:w-[30%]"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <p className="text-center text-sm mb-2">Username: user</p>
+        <p className="text-center text-sm mb-3">Password: user</p>
+        <Input
+          errors={errors}
+          placeholder="Username"
+          label="Username"
+          id="username"
+          register={register}
+          name="username"
+        />
+        <Input
+          errors={errors}
+          placeholder="Password"
+          label="Password"
+          type="password"
+          register={register}
+          name="password"
+        />
+        <Button text="Login" type="submit" isLoading={isLoading} />
+      </form>
+    </>
   );
 };
 

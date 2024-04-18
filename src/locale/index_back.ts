@@ -1,12 +1,12 @@
-// import axios from 'axios';
-import i18n from 'i18next';
-import backend from 'i18next-http-backend';
-import { initReactI18next } from 'react-i18next';
-import ko from './ko';
-import en from './en';
-import fr from './fr';
-import { getItem } from '../utils/localStorage';
-// export default { ko, en, fr };
+// // import axios from 'axios';
+// import i18n from 'i18next';
+// import backend from 'i18next-http-backend';
+// import { initReactI18next } from 'react-i18next';
+// import ko from './ko';
+// import en from './en';
+// import fr from './fr';
+// import { getItem } from '../utils/localStorage';
+// // export default { ko, en, fr };
 
 // const localeData = async (locale: string) => {
 //   let setlocale: unknown;
@@ -53,33 +53,21 @@ import { getItem } from '../utils/localStorage';
 //     }
 //   },
 // };
-const resources = {
-  en: {
-    translation: en,
-  },
-  ko: {
-    translation: ko,
-  },
-  fr: {
-    translation: fr,
-  },
-};
 
-i18n
-  .use(backend)
-  .use(initReactI18next)
-  .init({
-    resources,
-    // backend: backendOptions,
-    fallbackLng: 'ko',
-    // debug: false,
-    lng: getItem<{ locale: string }>('locale')?.locale || 'ko',
-    ns: ['translations'],
-    defaultNS: 'translations',
-    interpolation: {
-      escapeValue: false,
-      formatSeparator: ',',
-    },
-  });
+// i18n
+//   .use(backend)
+//   .use(initReactI18next)
+//   .init({
+//     backend: backendOptions,
+//     fallbackLng: 'ko',
+//     debug: false,
+//     lng: getItem<{ locale: string }>('locale')?.locale || 'ko',
+//     ns: ['translations'],
+//     defaultNS: 'translations',
+//     interpolation: {
+//       escapeValue: false,
+//       formatSeparator: ',',
+//     },
+//   });
 
-export default i18n;
+// export default i18n;

@@ -10,8 +10,6 @@ import PublicRoute from './PublicRoute';
 import Test from '../pages/Subpage/test';
 import Chart from '../pages/Subpage/chart';
 
-// import keycloak, { initOptions, onKeycloakEvent } from '../keycloak';
-
 const Router = () => {
   return (
     <BrowserRouter>

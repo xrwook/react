@@ -1,11 +1,12 @@
 import Router from './routes';
 import Header from './common/Header';
-
-import { init } from './keycloak';
-
-init();
+import { useKeycloak } from '@react-keycloak/web';
 
 export default function App() {
+  const { initialized } = useKeycloak();
+  if (!initialized) {
+    return <></>;
+  }
   return (
     <>
       <div className="App font-mono h-screen">

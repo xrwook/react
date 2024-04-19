@@ -7,5 +7,9 @@
     "logout": "Déconnexion",
     "loginMessage": "Veuillez vous connecter",
     "logoutMessage": "Êtes-vous sûr de vouloir vous déconnecter?"
+  },
+  "test": {
+    "add": "Ajouter",
+    "getUserInfo": "Obtenir les informations de l'utilisateur"
   }
 }

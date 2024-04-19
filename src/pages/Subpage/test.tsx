@@ -43,7 +43,7 @@ const Test = () => {
   return (
     <>
       <div>
-        <Button text="getUseinfo" onClick={getUseinfo} />
+        <Button text={t('test.getUserInfo')} onClick={getUseinfo} />
         <div>
           {Object.keys(userInfo).map((key, idx) => {
             return (

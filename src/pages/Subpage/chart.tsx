@@ -14,6 +14,7 @@ import {
   Legend,
 } from 'chart.js';
 import Button from '../../common/Button';
+import { useTranslation } from 'react-i18next';
 
 interface AirportData extends Airport {
   number?: number;
@@ -99,6 +100,7 @@ const BarChart = ({
 };
 
 const Chart = () => {
+  const { t } = useTranslation();
   const [data, setData] = useState<AirportData[]>([]);
   const [type, setType] = useState('Bar');
   const [idx, setIdx] = useState(0);
@@ -134,7 +136,7 @@ const Chart = () => {
   return (
     <>
       <h1>AirPort</h1>
-      <Button text="ADD" isLoading={false} onClick={addData}></Button>
+      <Button text={t('test.add')} isLoading={false} onClick={addData}></Button>
       <table>
         <thead>
           <tr>

@@ -1,5 +1,11 @@
 {
   "common": {
     "home": "Home"
+  },
+  "login": {
+    "login": "Login",
+    "logout": "Logout",
+    "loginMessage": "Please login",
+    "logoutMessage": "Are you sure you want to logout?"
   }
 }

@@ -9,8 +9,10 @@ import { useLoginQuery } from '../../services/queries/auth.query';
 import useAuthStore from '../../store/useAuthStore';
 import { type LoginBody } from '../../types/auth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { setIsAuthenticated } = useAuthStore((state) => state);
   const { isLoading, mutateAsync: login, isError, error } = useLoginQuery();
@@ -33,11 +35,11 @@ const Login = () => {
 
   const goTest = () => {
     navigate('/test');
-  }
+  };
 
   return (
     <>
-      <Button text="test" onClick={goTest}  isLoading={isLoading} />
+      <Button text={t('login.login')} onClick={goTest} isLoading={isLoading} />
       <form
         className="m-auto w-[90%] md:w-[30%]"
         onSubmit={handleSubmit(onSubmit)}

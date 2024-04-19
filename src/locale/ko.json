@@ -1,5 +1,11 @@
 {
   "common": {
     "home": "홈으로"
+  },
+  "login": {
+    "login": "로그인",
+    "logout": "로그아웃",
+    "loginMessage": "로그인이 필요합니다.",
+    "logoutMessage": "로그아웃 하시겠습니까?"
   }
 }

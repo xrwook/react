@@ -1,5 +1,11 @@
 {
   "common": {
     "home": "maison"
+  },
+  "login": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "loginMessage": "Veuillez vous connecter",
+    "logoutMessage": "Êtes-vous sûr de vouloir vous déconnecter?"
   }
 }

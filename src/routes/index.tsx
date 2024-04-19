@@ -9,6 +9,9 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Test from '../pages/Subpage/test';
 import Chart from '../pages/Subpage/chart';
+import SaasBuy from '../pages/Saas/SassBuy';
+import Sublayot from '../common/layout/Sublayot';
+import New from '../pages/Subpage/New';
 
 const Router = () => {
   return (
@@ -22,6 +25,16 @@ const Router = () => {
             </PublicRoute>
           }
         />
+
+        <Route
+          path="/buy"
+          element={
+            <PublicRoute>
+              <SaasBuy />
+            </PublicRoute>
+          }
+        />
+
         <Route
           path="/tab"
           element={
@@ -35,17 +48,21 @@ const Router = () => {
           <Route path="axios-query" element={<AxiosQuery />} />
           <Route path="react-query" element={<ReactQuery />} />
         </Route>
-        <Route
-          path="/test"
-          element={
-            <PrivateRoute>
-              <>
-                <Test />
-                <Chart />
-              </>
-            </PrivateRoute>
-          }
-        />
+
+        <Route element={<Sublayot />}>
+          <Route element={<PrivateRoute />}>
+            <Route
+              path="/test"
+              element={
+                <>
+                  <Test />
+                  <Chart />
+                </>
+              }
+            />
+            <Route path="/new" element={<New />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -25,7 +25,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'ko',
-    debug: true,
+    debug: false,
     lng: getItem<{ locale: string }>('locale')?.locale || 'ko',
     interpolation: {
       escapeValue: false,

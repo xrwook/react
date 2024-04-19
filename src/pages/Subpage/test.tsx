@@ -1,18 +1,25 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Button from '../../common/Button';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../locale/index';
-import { getItem, setItem } from '../../utils/localStorage';
-import { useKeycloak } from '@react-keycloak/web';
+import useUserInfo from '../../store/useUserInfo';
+import { Link, useNavigate } from 'react-router-dom';
+const BtnGrp = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex justify-center space-x-4">
+      <Link to="/new">LINK</Link>
+      <Button text="Contact" onClick={() => navigate('/new')} />
+    </div>
+  );
+};
 
 const Test = () => {
-  const { keycloak } = useKeycloak();
   const { t } = useTranslation();
   const [incNumber, setIncNumber] = useState<number>(0);
-  const [userInfo, setUserInfo] = useState<any>({});
-  const [locale, setLocale] = useState<string>(
-    getItem<{ locale: string }>('locale')?.locale || 'ko',
-  );
+  const { user } = useUserInfo((state: any) => state);
+  const [show, setShow] = useState<boolean>(false);
+
   const useRandom = useCallback(() => {
     setIncNumber(incNumber + 1);
   }, [incNumber]);
@@ -25,33 +32,21 @@ const Test = () => {
     return incNumber + 1;
   }, [incNumber]);
 
-  const selectLocale = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLocale(e.target.value);
-  };
-
-  useEffect(() => {
-    i18n.changeLanguage(locale);
-    setItem('locale', { locale: locale });
-  }, [locale]);
-
-  const getUseinfo = async () => {
-    const user = await keycloak.loadUserInfo();
-    setUserInfo(user);
-    console.log(user);
-  };
-
   return (
     <>
+      <BtnGrp />
+      <hr />
       <div>
-        <Button text={t('test.getUserInfo')} onClick={getUseinfo} />
+        <Button text={t('test.getUserInfo')} onClick={() => setShow(!show)} />
         <div>
-          {Object.keys(userInfo).map((key, idx) => {
-            return (
-              <div key={idx}>
-                {key}: {userInfo[key]}
-              </div>
-            );
-          })}
+          {show &&
+            Object.keys(user).map((key, idx) => {
+              return (
+                <div key={idx}>
+                  {key}: {user[key]}
+                </div>
+              );
+            })}
         </div>
 
         <Button text={t(`common.home`)} onClick={useRandom} />
@@ -59,12 +54,7 @@ const Test = () => {
       </div>
       <div>result: {incNumber}</div>
       <div>incrementedValue: {incrementedValue}</div>
-      <select onChange={selectLocale} value={locale}>
-        <option value="ko">ko</option>
-        <option value="en">en</option>
-        <option value="fr">fr</option>
-      </select>
-      <div>locale: {locale}</div>
+      <hr />
     </>
   );
 };

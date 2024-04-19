@@ -1,17 +1,29 @@
-import { type ReactElement } from 'react';
+import { useEffect } from 'react';
 import { useKeycloak } from '@react-keycloak/web';
+import useUserInfo from '../store/useUserInfo';
+import { Outlet } from 'react-router-dom';
 
-interface Props {
-  children: ReactElement;
-}
+const PrivateRoute = () => {
+  const { setUser } = useUserInfo((state: any) => state);
 
-const PrivateRoute: React.FC<Props> = ({ children }) => {
   const { keycloak } = useKeycloak();
-  if (!keycloak.authenticated) {
-    keycloak.login();
+  useEffect(() => {
+    if (keycloak.authenticated) {
+      const loadUser = async () => {
+        const user = await keycloak.loadUserInfo();
+        setUser(user);
+      };
+      loadUser();
+    } else {
+      keycloak.login();
+    }
+  }, [keycloak]);
+
+  if (keycloak.authenticated) {
+    return <Outlet />;
+  } else {
     return <></>;
   }
-  return children;
 };
 
 export default PrivateRoute;

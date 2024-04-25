@@ -12,6 +12,7 @@ import Chart from '../pages/Subpage/chart';
 import SaasBuy from '../pages/Saas/SassBuy';
 import Sublayot from '../common/layout/Sublayot';
 import New from '../pages/Subpage/New';
+import Gird from '../pages/Gird';
 
 const Router = () => {
   return (
@@ -62,6 +63,8 @@ const Router = () => {
             />
             <Route path="/new" element={<New />} />
           </Route>
+
+          <Route path="/grid" element={<Gird />} />
         </Route>
       </Routes>
     </BrowserRouter>

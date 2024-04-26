@@ -1,12 +1,16 @@
 {
   "common": {
-    "home": "Home"
+    "home": "Home",
+    "search": "required search keyword",
+    "save": "Save"
   },
   "login": {
     "login": "Login",
     "logout": "Logout",
     "loginMessage": "Please login",
-    "logoutMessage": "Are you sure you want to logout?"
+    "logoutMessage": "Are you sure you want to logout?",
+    "passRequired": "Password is required.",
+    "nameRequired": "Username is required."
   },
   "test": {
     "add": "Add",

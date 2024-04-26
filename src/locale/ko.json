@@ -1,12 +1,16 @@
 {
   "common": {
-    "home": "홈으로"
+    "home": "홈으로",
+    "search": "검색어를 입력하세요",
+    "save": "저장"
   },
   "login": {
     "login": "로그인",
     "logout": "로그아웃",
     "loginMessage": "로그인이 필요합니다.",
-    "logoutMessage": "로그아웃 하시겠습니까?"
+    "logoutMessage": "로그아웃 하시겠습니까?",
+    "passRequired": "비밀번호가 필요합니다.",
+    "nameRequired": "이름이 필요합니다."
   },
   "test": {
     "add": "추가",

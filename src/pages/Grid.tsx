@@ -78,7 +78,7 @@ const Grid = () => {
     { enabled: false },
   );
 
-  //react useMemo hook 사용
+  // react useMemo hook 사용
   const custom = useMemo(() => {
     if (!data) return [];
     return data?.map((item) => {

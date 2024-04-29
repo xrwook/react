@@ -33,13 +33,18 @@ const SaveTest = (): JSX.Element => {
     resolver: yupResolver(gridSearchSchema),
   });
 
-  console.log(watch('search'));
+  console.log('search ==> ', watch('search'));
+
+  const onSubmit = async (data: GridSearchParams) => {
+    const xxx = await saveTodos(data);
+    console.log(xxx);
+  };
 
   return (
     <>
       <form
         className="m-auto w-[90%] md:w-[30%]"
-        onSubmit={handleSubmit(saveTodos)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <Input
           errors={errors}

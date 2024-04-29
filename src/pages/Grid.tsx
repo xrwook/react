@@ -27,7 +27,7 @@ const SaveTest = (): JSX.Element => {
     register,
     watch,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<GridSearchParams>({
     mode: 'onSubmit',
     resolver: yupResolver(gridSearchSchema),
@@ -47,7 +47,9 @@ const SaveTest = (): JSX.Element => {
           register={register}
           name="search"
         />
-        {/* {errors && <span>{errors!.search!.message}</span>} */}
+        {/* {errors && <span>{`${errors}`}</span>} */}
+        <br />
+
         <Button text={t('common.save')} type="submit" />
       </form>
       <hr />

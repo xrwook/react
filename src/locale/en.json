@@ -2,6 +2,7 @@
   "common": {
     "home": "Home",
     "search": "required search keyword",
+    "onlyNumber": "Only numbers are allowed",
     "save": "Save"
   },
   "login": {

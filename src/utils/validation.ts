@@ -7,5 +7,8 @@ export const loginSchema = yup.object().shape({
 });
 
 export const gridSearchSchema = yup.object().shape({
-  search: yup.string().required(i18n.t('common.search')),
+  search: yup
+    .string()
+    .required(i18n.t('common.search'))
+    .matches(/^[a-zA-Z0-9]*$/, i18n.t('common.onlyNumber')),
 });

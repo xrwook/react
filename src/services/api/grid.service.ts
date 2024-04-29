@@ -12,7 +12,12 @@ export interface SaveTod {
   id: string;
   name: string;
   createdAt: Date;
-  data: null;
+  data: null | Record<string, unknown>;
+}
+
+export interface GridSearchParams {
+  search?: string;
+  id: string;
 }
 
 export const getTodos = async (
@@ -26,7 +31,7 @@ export const getTodos = async (
   else return data;
 };
 
-export const saveTodos = async (data: any): Promise<SaveTod> => {
+export const saveTodos = async (data: GridSearchParams): Promise<SaveTod> => {
   const response = await api.post('https://api.restful-api.dev/objects', {
     name: `Apple MacBook Pro ${data.search}`,
     id: data.id,

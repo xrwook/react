@@ -14,12 +14,8 @@ import { useForm } from 'react-hook-form';
 import { gridSearchSchema } from '../utils/validation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useQuery } from '@tanstack/react-query';
-import { getTodos, type Todos, saveTodos } from '../services/api/grid.service';
-
-export interface GridSearchParams {
-  search: string;
-  id: string;
-}
+import { getTodos, saveTodos } from '../services/api/grid.service';
+import type { Todos, GridSearchParams } from '../services/api/grid.service';
 
 const SaveTest = (): JSX.Element => {
   //useform 사용으로

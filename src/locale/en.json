@@ -3,6 +3,7 @@
     "home": "Home",
     "search": "required search keyword",
     "onlyNumber": "Only numbers are allowed",
+    "id": "Id is required.",
     "save": "Save"
   },
   "login": {

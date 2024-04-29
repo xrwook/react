@@ -11,4 +11,8 @@ export const gridSearchSchema = yup.object().shape({
     .string()
     .required(i18n.t('common.search'))
     .matches(/^[a-zA-Z0-9]*$/, i18n.t('common.onlyNumber')),
+  id: yup
+    .string()
+    .required(i18n.t('common.search'))
+    .matches(/^[0-9]*$/, i18n.t('common.onlyNumber')),
 });

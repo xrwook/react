@@ -29,6 +29,7 @@ export const getTodos = async (
 export const saveTodos = async (data: any): Promise<SaveTod> => {
   const response = await api.post('https://api.restful-api.dev/objects', {
     name: `Apple MacBook Pro ${data.search}`,
+    id: data.id,
   });
   console.log(data);
   return response.data;

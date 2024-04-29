@@ -18,6 +18,7 @@ import { getTodos, type Todos, saveTodos } from '../services/api/grid.service';
 
 export interface GridSearchParams {
   search: string;
+  id: string;
 }
 
 const SaveTest = (): JSX.Element => {
@@ -52,6 +53,7 @@ const SaveTest = (): JSX.Element => {
           register={register}
           name="search"
         />
+        <Input errors={errors} placeholder="id" register={register} name="id" />
         {/* {errors && <span>{`${errors}`}</span>} */}
         <br />
 

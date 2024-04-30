@@ -16,6 +16,7 @@
   },
   "test": {
     "add": "Add",
-    "getUserInfo": "Get user information"
+    "getUserInfo": "Get user information",
+    "userInfo": "{{name}} , hello"
   }
 }

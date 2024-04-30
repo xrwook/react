@@ -37,7 +37,14 @@ const Test = () => {
       <BtnGrp />
       <hr />
       <div>
-        <Button text={t('test.getUserInfo')} onClick={() => setShow(!show)} />
+        <Button
+          text={
+            !show
+              ? t('test.getUserInfo')
+              : t('test.userInfo', { name: user.name })
+          }
+          onClick={() => setShow(!show)}
+        />
         <div>
           {show &&
             Object.keys(user).map((key, idx) => {

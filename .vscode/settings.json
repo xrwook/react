@@ -1,0 +1,12 @@
+{
+  "i18n-ally.localesPaths": ["src/locale"],
+  "i18n-ally.sourceLanguage": "ko",
+  "i18n-ally.enabledFrameworks": ["react-i18next"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.displayLanguage": "ko",
+  "i18n-ally.namespace": true,
+  "i18n-ally.pathMatcher": "{locale}.json",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json": "untitled:Untitled-1"
+  }
+}

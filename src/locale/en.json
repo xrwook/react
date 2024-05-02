@@ -1,15 +1,22 @@
 {
   "common": {
-    "home": "Home"
+    "home": "Home",
+    "search": "required search keyword",
+    "onlyNumber": "Only numbers are allowed",
+    "id": "Id is required.",
+    "save": "Save"
   },
   "login": {
     "login": "Login",
     "logout": "Logout",
     "loginMessage": "Please login",
-    "logoutMessage": "Are you sure you want to logout?"
+    "logoutMessage": "Are you sure you want to logout?",
+    "passRequired": "Password is required.",
+    "nameRequired": "Username is required."
   },
   "test": {
     "add": "Add",
-    "getUserInfo": "Get user information"
+    "getUserInfo": "Get user information",
+    "userInfo": "{{name}} , hello"
   }
 }

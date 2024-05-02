@@ -12,6 +12,8 @@ import Chart from '../pages/Subpage/chart';
 import SaasBuy from '../pages/Saas/SassBuy';
 import Sublayot from '../common/layout/Sublayot';
 import New from '../pages/Subpage/New';
+import Grid from '../pages/Grid';
+import Editor from '../pages/Editor';
 
 const Router = () => {
   return (
@@ -62,6 +64,9 @@ const Router = () => {
             />
             <Route path="/new" element={<New />} />
           </Route>
+
+          <Route path="/grid" element={<Grid />} />
+          <Route path="/editor" element={<Editor />} />
         </Route>
       </Routes>
     </BrowserRouter>

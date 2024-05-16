@@ -39,11 +39,11 @@ const Login = () => {
 
   return (
     <>
-      <Button text={t('login.login')} onClick={goTest} isLoading={isLoading} />
       <form
         className="m-auto w-[90%] md:w-[30%]"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <Button text="로그인" onClick={goTest} isLoading={isLoading} />
         <p className="text-center text-sm mb-2">Username: user</p>
         <p className="text-center text-sm mb-3">Password: user</p>
         <Input

@@ -156,3 +156,21 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+FROM node:20.11.1-alpine as build-stage
+ARG profile=build_prod
+WORKDIR /app
+COPY package*.json ./
+ENV GENERATE_SOURCEMAP=false
+ENV NODE_OPTIONS=--max-old-space-size=16384
+RUN npm install
+RUN npm i -g serve
+COPY . .
+RUN npm run build
+ENV HOST 0.0.0.0
+EXPOSE 3000
+CMD ["npm", "run", "serve"]
+
